@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header>
+
+</header>
+
+<main>
+    <div>
+        <h2>본인확인을 위해 비밀번호 입력하세영</h2>
+        <div>
+            <form id="deletevalue" novalidate>
+                <div>
+                    <input type="hidden" id="id" name="id" th:value="${#authentication.principal.id}">
+                </div>
+                <div>
+                    <input type="password" id="password" name="password">
+                    <label for="password">비밀번호</label>
+                </div>
+            </form>
+            <button id="deletebtn" name="deletebtn">회원 탈퇴</button>
+            <button onclick="location.href='/'">메인으로</button>
+        </div>
+    </div>
+
+
+</main>
+<script th:src="@{/js/user.js}"></script>
+</body>
+
+</html>

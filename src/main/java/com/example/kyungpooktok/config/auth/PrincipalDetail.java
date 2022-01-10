@@ -44,6 +44,10 @@ public class PrincipalDetail implements UserDetails {
     }
 
 
+    public String getKakaotalkid(){
+        return user.getKakaotalkid();
+    }
+    public String getInstarid(){ return user.getInstarid();}
     //사용자 pk
     public Long getId() {
         return user.getId();

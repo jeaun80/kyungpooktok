@@ -6,8 +6,13 @@
 </head>
 <body>
 <div th:align="center">
+<button th:text="${title}"></button>
+    <a sec:authorize="isAuthenticated()" class="nav-link" href="/user/management">회원정보</a>
+    <a sec:authorize="isAuthenticated()" class="nav-link" href="/logout">로그아웃</a>
+    <a sec:authorize="isAnonymous()" class="nav-link" href="/auth/user/save">회원가입</a>
+    <a sec:authorize="isAuthenticated()" class="nav-link" href="/user/delete">회원탈퇴</a>
 
-
+    <button onclick="location.href='/user/management'"></button>
     채팅방<br>
     <br>채팅방<br><br><br>
     채팅새로시작

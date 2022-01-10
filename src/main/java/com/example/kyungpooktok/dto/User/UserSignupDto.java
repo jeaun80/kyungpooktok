@@ -16,7 +16,7 @@ public class UserSignupDto {
     private String username;
     private String password;
     private String email;
-    private String kakaotolkid;
+    private String kakaotalkid;
     private String instarid;
     private Role role;
     public User toEntity(){
@@ -24,7 +24,7 @@ public class UserSignupDto {
                 .username(username)
                 .password(password)
                 .email(email)
-                .kakaotalkid(kakaotolkid)
+                .kakaotalkid(kakaotalkid)
                 .instarid(instarid)
                 .role(Role.USER)
                 .build();
