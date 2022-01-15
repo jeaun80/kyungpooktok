@@ -5,6 +5,7 @@ import com.example.kyungpooktok.domain.User.User;
 import com.example.kyungpooktok.dto.User.UserSignupDto;
 import com.example.kyungpooktok.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import java.security.Principal;
 
 @RestController
 @RequiredArgsConstructor
+
 public class UserApiController {
     private final UserService userService;
     @PostMapping("/auth/api/signup")
@@ -31,4 +33,6 @@ public class UserApiController {
         userService.delete(user,principalDetail);
         return user.getId();
     }
+
+
 }

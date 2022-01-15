@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
     private final UserRepository userrepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
     @Transactional
     public Long save(User user){
         String hashPw = bCryptPasswordEncoder.encode(user.getPassword());
@@ -39,4 +38,5 @@ public class UserService {
         }
         return user.getId();
     }
+
 }

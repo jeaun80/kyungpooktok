@@ -34,6 +34,44 @@ let index = {
                 this.delete();
             }
         });
+
+
+        $("#emailsubbtn").on("click",() => {
+            let form = document.querySelector("#email");
+            if(form.checkValidity()==false){
+                console.log("안되는 이메일");
+                alert("dfjaksfd");
+            }
+            else{
+                console.log("메일발송");
+                this.sendmail();
+                alert($("#email.value"));
+
+            }
+        })
+        $("#checkemailbtn").on("click",() =>{
+            let form =document.querySelector("#checkvalue");
+            if(form.checkValidity()==false){
+                console.log("형식이 틀림");
+            }
+            else{
+                console.log("검사해볼게");
+                alert("되냐");
+                this.checkmail();
+            }
+        })
+
+        $("#emailduplicatebtn").on("click",() =>{
+            let form =document.querySelector("#email");
+            if(form.checkValidity()==false){
+                console.log("형식이 틀림");
+            }
+            else{
+                console.log("검사해볼게");
+                alert("되냐");
+                this.mailduplcate();
+            }
+        })
     },
 
     save: function() {
@@ -99,7 +137,81 @@ let index = {
         }).fail(function (err) {
             alert(JSON.stringify(err));
         });
-    }
+    },
+    mailduplcate:function (){
+        const data={
+            email:$("#email").val()
+        }
+        $.ajax({
+            url:"/auth/mailduplicate",
+            type:"POST",
+            data:JSON.stringify(data),
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+            success: function(result) {
+                alert("중복확인!!");
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert("중복입니다.");
+            }
+        }).done(function (res){
+            alert("중복 발송");
+        }).fail(function (err){
+            alert(JSON.stringify(err));
+        })
+    },
+    sendmail:function (){
+        const data={
+            email:$("#email").val()
+        }
 
+        $.ajax({
+            url:"/auth/mail",
+            type:"POST",
+            data:JSON.stringify(data),
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+            success: function(result) {
+                $("#checkvalue").attr("disabled",null);
+                $("#checkemailbtn").attr("disabled",null);
+                alert("이메일 발송에 성공했습니다!");
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert("이메일 발송에 실패했습니다.");
+            }
+        }).done(function (res){
+            alert("인증번호 발송");
+        }).fail(function (err){
+            alert(JSON.stringify(err));
+        })
+    },
+    checkmail: function (){
+        const data= {
+            email: $("#email").val(),
+            num: $("#checkvalue").val()
+        }
+
+        $.ajax({
+            url:"/auth/checkmail",
+            type:"POST",
+            data:JSON.stringify({
+                email: $("#email").val(),
+                num: $("#checkvalue").val()
+            }),
+            datatype:"json",
+            contentType: "application/json; charset=utf-8",
+            success: function(result) {
+                $("#checkvalue").attr("disabled",null);
+                $("#checkemailbtn").attr("disabled",null);
+                alert("이메일 인증에 성공했습니다!");
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert("이메일 발송에 실패했습니다.");
+            }
+        }).done(function (){
+            $("#savebtn").attr("disabled",null);
+            alert("됫다?");
+        })
+    }
 }
 index.init();
