@@ -12,7 +12,6 @@ import java.security.Principal;
 @RequiredArgsConstructor
 @Controller
 public class MainController {
-    private final UserService userService;
     @GetMapping("/")
     public String index(Model model, Principal principal) {
         model.addAttribute("title",principal.getName());

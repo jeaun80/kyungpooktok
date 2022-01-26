@@ -46,7 +46,6 @@ let index = {
                 console.log("메일발송");
                 this.sendmail();
                 alert($("#email.value"));
-
             }
         })
         $("#checkemailbtn").on("click",() =>{
@@ -70,6 +69,17 @@ let index = {
                 console.log("검사해볼게");
                 alert("되냐");
                 this.mailduplcate();
+            }
+        })
+
+        $("#idvaluebtn").on("click",() =>{
+            let form = document.querySelector("#idemailvalue");
+            if(form.checkValidity()==false){
+                console.log("형식 또는 입력없음");
+
+            }
+            else{
+                this.idcheckemail();
             }
         })
     },
@@ -147,15 +157,21 @@ let index = {
             type:"POST",
             data:JSON.stringify(data),
             dataType:"json",
+            async:false,
             contentType: "application/json; charset=utf-8",
-            success: function(result) {
-                alert("중복확인!!");
+            success: function(data) {
+                if(data){
+                    alert("사용가능한 이메일입니다.")
+                }
+                else{
+                    alert("사용불가");
+                }
+
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                alert("중복입니다.");
+                alert("중복되는 이메일입니다.");
             }
         }).done(function (res){
-            alert("중복 발송");
         }).fail(function (err){
             alert(JSON.stringify(err));
         })
@@ -212,6 +228,24 @@ let index = {
             $("#savebtn").attr("disabled",null);
             alert("됫다?");
         })
+    },
+    idcheckemail: function (){
+        const data={
+            username:$("idvalue").val(),
+            email:$("emailvalue").val()
+        }
+        $.ajax({
+            url:"/auth/api/cheke",
+            type:"GET",
+            data:JSON.stringify(data),
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+            success:function (res){
+            }
+        }).done(function (){
+            alert("ㄲ트");
+        })
     }
+
 }
 index.init();

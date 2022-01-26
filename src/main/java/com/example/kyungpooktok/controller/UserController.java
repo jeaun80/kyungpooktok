@@ -1,19 +1,21 @@
 package com.example.kyungpooktok.controller;
 
 
+import com.example.kyungpooktok.domain.User.User;
 import com.example.kyungpooktok.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
+import java.util.Optional;
 
 @Controller
-
+@RequiredArgsConstructor
 public class UserController {
 
+    private final UserService userService;
     @GetMapping("/auth/user/login")
     public String login(){
         return "layout/user/user-login";
@@ -22,10 +24,21 @@ public class UserController {
     public String Signup(){ return "layout/user/User-SignUp";}
 
     @GetMapping("/user/management")
-    public String management(){return "layout/user/User-Management";}
-
+    public String manage(Model model,Principal principal){
+        Optional<User> res=userService.find(principal.getName());
+        if(res.isPresent()){
+            User username=res.get();
+            model.addAttribute("title",username);
+        }
+        return "layout/user/User-Management";
+    }
     @GetMapping("/user/delete")
     public String delete(){return "layout/user/User-Delete";}
+
+    @GetMapping("/auth/user/update")
+    public String update(){
+        return "layout/user/User-UpdatePassword";
+    }
 
 
 }

@@ -3,16 +3,13 @@ package com.example.kyungpooktok.controller.api;
 import com.example.kyungpooktok.config.Email.EmailServie;
 import com.example.kyungpooktok.dto.mail.MailDto;
 import com.example.kyungpooktok.dto.mail.MailchekeDto;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import com.example.kyungpooktok.api.response.CommonResponse;
 
 @RestController
@@ -22,7 +19,7 @@ public class MailApiContoroller {
     private final EmailServie mailService;
 
     @PostMapping("/auth/mailduplicate")
-    public ResponseEntity<CommonResponse> mailduplicate(MailDto mailDto){
+    public ResponseEntity<CommonResponse> mailduplicate(@RequestBody MailDto mailDto){
         if(mailService.EmailDuplicate(mailDto)){
             return new ResponseEntity<>(CommonResponse.builder().msg("OK").build(), HttpStatus.OK);
         }
@@ -48,6 +45,6 @@ public class MailApiContoroller {
         } else {
             return new ResponseEntity<>(CommonResponse.builder().msg("failed").build(), HttpStatus.BAD_REQUEST);
         }
-    };
+    }
 
 }

@@ -1,22 +1,16 @@
 package com.example.kyungpooktok.config.Email;
 
+import com.example.kyungpooktok.domain.User.User;
 import com.example.kyungpooktok.domain.User.UserRepository;
 import com.example.kyungpooktok.domain.mail.Mail;
 import com.example.kyungpooktok.domain.mail.MailRepository;
 import com.example.kyungpooktok.dto.mail.MailDto;
 import com.example.kyungpooktok.dto.mail.MailchekeDto;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import java.util.Optional;
 import java.util.Random;
 
@@ -65,13 +59,14 @@ public class EmailServicelmpl implements EmailServie{
 
     }
     @Override
-    public boolean EmailDuplicate(MailDto mailDto){
-        if(userRepository.existsByEmail(mailDto.getEmail())){
-            return false;
-        }
-        else{
-            return true;
-        }
+    public boolean EmailDuplicate(MailDto mailDto) {
+       Optional<User> user=userRepository.findByEmail(mailDto.getEmail());
+       if(user.isPresent()){
+           return false;
+       }
+       else{
+           return true;
+       }
     }
 
     @Override

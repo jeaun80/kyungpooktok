@@ -7,6 +7,7 @@
 <body>
 <div th:align="center">
 <button th:text="${title}"></button>
+    <form action="/user/management" method="post"></form>
     <a sec:authorize="isAuthenticated()" class="nav-link" href="/user/management">회원정보</a>
     <a sec:authorize="isAuthenticated()" class="nav-link" href="/logout">로그아웃</a>
     <a sec:authorize="isAnonymous()" class="nav-link" href="/auth/user/save">회원가입</a>

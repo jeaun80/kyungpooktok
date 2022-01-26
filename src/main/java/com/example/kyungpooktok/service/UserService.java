@@ -8,6 +8,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -38,5 +39,17 @@ public class UserService {
         }
         return user.getId();
     }
+    @Transactional
+    public Optional<User> find(String name){
+        return userrepository.findByUsername(name);
+    }
 
+    @Transactional
+    public boolean check(User user){
+        User setuser=userrepository.findByUsername(user.getUsername()).orElseThrow(() -> new IllegalArgumentException("해당 회원이 없습니다. id=" + user.getId()));
+        if(setuser.getEmail().equals(user.getEmail())){
+            return true;
+        }
+        return false;
+    }
 }

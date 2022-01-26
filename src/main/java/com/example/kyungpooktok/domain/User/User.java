@@ -28,12 +28,11 @@ public class User extends BaseTime {
     @Column(nullable = false,length = 50)
     private String email;
 
-    @Column(nullable = false,length = 100)
+    @Column(nullable = true,length = 100)
     private String kakaotalkid;
 
     @Column(nullable = true,length = 100)
     private String instarid;
-
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

@@ -5,15 +5,25 @@
     <title>Title</title>
 </head>
 <body>
+
+<table>
+    <tbody>
+    <tr>
+        <th>카카오톡아이디</th>
+        <td th:text="${title}"></td>
+        <td><STRONG value="${userkakaotalkid}"></STRONG> </td>
+    </tr>
+    </tbody>
+</table>
 <div>
     <form id="updatevalue" novalidate>
         <input type="hidden" id="id" th:value="${#authentication.principal.id}">
         <div class="">
-            <input type= "text" id="kakaotalkid" th:value="${#authentication.principal.kakaotalkid}">
+            <input type= "text" id="kakaotalkid" th:value="${title.getKakaotalkid()}">
             <label for="kakaotalkid">카카오톡 아이디</label>
         </div>
         <div class="">
-            <input type= "text" id="instarid" th:value="${#authentication.principal.instarid}">
+            <input type= "text" id="instarid" th:value="${title.getInstarid()}">
             <label for="instarid">인스타 아이디</label>
         </div>
         <div class="">
