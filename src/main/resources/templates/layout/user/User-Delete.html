@@ -2,34 +2,48 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="shortcut icon" type="image⁄x-icon" href="https://previews.123rf.com/images/siamimages/siamimages1604/siamimages160400083/54793402-%EA%B8%B0%EB%B3%B8-%EA%B8%80%EA%
+      BC%B4-%EB%AC%B8%EC%9E%90-k-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8-%EB%94%94%EC%9E%90%EC%9D%B8.jpg">
+    <title>경푹톡 회원탈퇴</title>
+    <style type="text/css">
+        body{background-color: #E0FFFF}
+        #box{width: 300px; height: 400px; position : absolute; left :50%; top:50%; margin-left: -150px; margin-top: -200px;
+            text-align: center; border-radius: 20px; padding:10px;background-color: white;  box-shadow: 0px 0px 20px #000;}
+        #head{font-size: 50px; position: absolute; left:615px; top:50px; color: tomato; font-weight: bolder;}
+        #password{line-height: 25px; border-radius: 10px; font-size: 15px;}
+        #deletebtn{width: 150px; height:40px;border-radius: 10px; font-size: 20px;}
+        #main{width: 150px; height:40px; border-radius: 10px; font-size: 20px;}
+        input:focus {
+            outline: 2px solid #FF6347;
+        }
+
+    </style>
 </head>
 <body>
-<header>
-
+<header id="head">
+    KyungPookTok
 </header>
 
 <main>
-    <div>
-        <h2>본인확인을 위해 비밀번호 입력하세영</h2>
+    <div id="box">
+        <h2>본인확인을 위해<br>비밀번호를 입력하세요.</h2>
         <div>
             <form id="deletevalue" novalidate>
                 <div>
                     <input type="hidden" id="id" name="id" th:value="${#authentication.principal.id}">
                 </div>
                 <div>
-                    <input type="password" id="password" name="password">
-                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" name="password" placeholder="비밀번호" size="30">
                 </div>
-            </form>
-            <button id="deletebtn" name="deletebtn">회원 탈퇴</button>
-            <button onclick="location.href='/'">메인으로</button>
+            </form><br><br><br>
+            <button id="deletebtn" name="deletebtn">회원탈퇴</button><br><br><br>
+            <button id="main" onclick="location.href='/'">메인으로</button>
         </div>
     </div>
 
 
 </main>
-<script th:src="@{/js/user.js}"></script>
+<script th:src="@{/user.js}"></script>
 </body>
 
 </html>

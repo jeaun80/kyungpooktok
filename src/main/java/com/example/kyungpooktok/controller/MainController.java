@@ -17,4 +17,8 @@ public class MainController {
         model.addAttribute("title",principal.getName());
         return "main";
     }
+    @GetMapping("/user/chat")
+    public String chat(){
+        return "layout/chat/randomchat";
+    }
 }
