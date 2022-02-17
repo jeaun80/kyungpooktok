@@ -25,9 +25,9 @@ public class UserApiController {
     }
 
     @DeleteMapping("/api/delete")
-    public Long delete(@RequestBody User user,@AuthenticationPrincipal PrincipalDetail principalDetail){
-        userService.delete(user,principalDetail);
-        return user.getId();
+    public boolean delete(@RequestBody User user,@AuthenticationPrincipal PrincipalDetail principalDetail){
+        boolean res=userService.delete(user,principalDetail);
+        return res;
     }
 
     @GetMapping("/auth/api/cheke")

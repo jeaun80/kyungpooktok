@@ -84,11 +84,12 @@
             <form id="signupvalue" novalidate>
                 <div>
                     <div class="">
-                        <input type="text" name="email" id="email" required placeholder="  이메일">
-                        <label for="email"></label>
+                        <input type="text" name="email" id="email1" required placeholder="  이메일">
+                        <input type="text" name="emai2" id="email2" value="@knu.ac.kr" readonly>
+                        <label for="email1"></label>
                         <button type="button" id="emailduplicatebtn">이메일 중복확인</button>
-                        <button type="button" id="emailsubbtn" placeholder="인증번호 발송">인증번호 발송</button><br><br>
-                        <input type="texst" name="checkvalue" id="checkvalue" >
+                        <button type="button" id="emailsubbtn" placeholder="인증번호 발송" disabled>인증번호 발송</button><br><br>
+                        <input type="text" name="checkvalue" id="checkvalue" >
                         <button type="button" id="checkemailbtn" >인증번호 확인</button>
                     </div><br>
                 </div>

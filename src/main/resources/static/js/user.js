@@ -28,16 +28,19 @@ let index = {
             let form = document.querySelector("#deletevalue");
             if(form.checkValidity()==false){
                 console.log("횡원탈퇴 안됨");
+                alert("hihihihi");
             }
             else{
                 console.log("회탈 됨");
+                alert("kkkkkk");
+
                 this.delete();
             }
         });
 
 
         $("#emailsubbtn").on("click",() => {
-            let form = document.querySelector("#email");
+            let form = document.querySelector("#email1");
             if(form.checkValidity()==false){
                 console.log("안되는 이메일");
                 alert("dfjaksfd");
@@ -61,13 +64,12 @@ let index = {
         })
 
         $("#emailduplicatebtn").on("click",() =>{
-            let form =document.querySelector("#email");
+            let form =document.querySelector("#email1");
             if(form.checkValidity()==false){
                 console.log("형식이 틀림");
             }
             else{
                 console.log("검사해볼게");
-                alert("되냐");
                 this.mailduplcate();
             }
         })
@@ -88,7 +90,7 @@ let index = {
         let data = { //JavaScript Object
             username: $("#username").val(),
             password: $("#password").val(),
-            email: $("#email").val(),
+            email: $("#email1").val()+$("#email2").val(),
             instarid: $("#instarid").val(),
             kakaotalkid: $("#kakaotalkid").val()
 
@@ -142,15 +144,26 @@ let index = {
             contentType: "application/json; charset=utf-8",
             dataType: "json"
         }).done(function (res) {
-            alert("탈퇴가 완료된슴다.");
-            location.href = "/auth/user/login";
+            if(res==true){
+                console.log("hhhhhhhh");
+                console.log(res);
+                console.log(res[0]);
+                alert("회원탈퇴 완료했습니다.");
+                location.href = "/auth/user/login";
+            }
+            else{
+                console.log("hihi");
+                console.log(res);
+                alert("비밀번호가 틀렷습니다");
+            }
         }).fail(function (err) {
             alert(JSON.stringify(err));
         });
     },
     mailduplcate:function (){
         const data={
-            email:$("#email").val()
+            //email:$("#email1").val()
+            email:$("#email1").val()+$("#email2").val()
         }
         $.ajax({
             url:"/auth/mailduplicate",
@@ -160,13 +173,8 @@ let index = {
             async:false,
             contentType: "application/json; charset=utf-8",
             success: function(data) {
-                if(data){
-                    alert("사용가능한 이메일입니다.")
-                }
-                else{
-                    alert("사용불가");
-                }
-
+                alert("사용가능한 이메일입니다.");
+                $("#emailsubbtn").attr("disabled",null);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert("중복되는 이메일입니다.");
@@ -178,7 +186,7 @@ let index = {
     },
     sendmail:function (){
         const data={
-            email:$("#email").val()
+            email:$("#email1").val()+$("#email2").val()
         }
 
         $.ajax({
@@ -203,7 +211,7 @@ let index = {
     },
     checkmail: function (){
         const data= {
-            email: $("#email").val(),
+            email: $("#email1").val()+$("#email2").val(),
             num: $("#checkvalue").val()
         }
 
@@ -211,7 +219,7 @@ let index = {
             url:"/auth/checkmail",
             type:"POST",
             data:JSON.stringify({
-                email: $("#email").val(),
+                email: $("#email1").val()+$("#email2").val(),
                 num: $("#checkvalue").val()
             }),
             datatype:"json",
@@ -222,11 +230,10 @@ let index = {
                 alert("이메일 인증에 성공했습니다!");
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                alert("이메일 발송에 실패했습니다.");
+                alert("이메일 인증에 실패했습니다. 번호를 확인하세요");
             }
         }).done(function (){
             $("#savebtn").attr("disabled",null);
-            alert("됫다?");
         })
     },
     idcheckemail: function (){

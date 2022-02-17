@@ -32,12 +32,13 @@ public class UserService {
     }
 
     @Transactional
-    public Long delete(User user,@AuthenticationPrincipal PrincipalDetail principalDetail){
+    public boolean delete(User user,@AuthenticationPrincipal PrincipalDetail principalDetail){
         User deluser =userrepository.findById(user.getId()).orElseThrow(() -> new IllegalArgumentException("해당회원 없다"+ user.getId()));
         if(bCryptPasswordEncoder.matches(user.getPassword(),deluser.getPassword())==true){
             userrepository.deleteById(user.getId());
+            return true;
         }
-        return user.getId();
+        else{ return false;}
     }
     @Transactional
     public Optional<User> find(String name){

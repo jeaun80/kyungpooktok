@@ -14,7 +14,7 @@ $(function () {
             console.log('Success to receive join result.');
 
             $.ajax({
-                url       : 'join',
+                url       : '/join',
                 headers   : {
                     "Content-Type": "application/json"
                 },
