@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image⁄x-icon" href="https://previews.123rf.com/images/siamimages/siamimages1604/siamimages160400083/54793402-%EA%B8%B0%EB%B3%B8-%EA%
+    B8%80%EA%BC%B4-%EB%AC%B8%EC%9E%90-k-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8-%EB%94%94%EC%9E%90%EC%9D%B8.jpg">
+    <title>경푹톡에 오신것을 환영합니다.</title>
+    <style type="text/css">
+        body{background-color: #E0FFFF}
+        .my-box{width: 300px; height: 400px; position : absolute; left :70%; top:50%; margin-left: -150px; margin-top: -200px;
+            text-align: center; border-radius: 20px; padding:10px; background-color: white; box-shadow: 0px 0px 20px #000;}
+        .nav-link{font-size:x-large; text-align: center; text-decoration: none; color:black;}
+        #new-chat{background-color: blue; border: none; color: white; padding: 15px 30px; text-align: center; border-radius: 20px;
+            text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;}
+        #head{font-size: 60px; position: absolute;  left: 200px;top: 200px; color:tomato; font-weight: bolder;}
+        #head2{font-size: 30px; position: absolute; left: 200px;top: 270px;}
+        #chat-room{background-color: green; border: none; color: white; padding: 15px 30px; text-align: center; border-radius: 20px;
+            text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;}
+    </style>
+</head>
+<body>
+<header id="head">
+    kyungpooktok
+</header>
+<h1 id = "head2">Kyungpooktok에서 경북대학교에 있는<br> 이성들과 함께 이야기를 나눠보세요.</h1>
+<div class="my-box">
+    <form action="/user/management" method="post"></form><br><br>
+    <a sec:authorize="isAuthenticated()" class="nav-link" href="/user/management">회원정보</a><br><hr>
+    <a sec:authorize="isAuthenticated()" class="nav-link" href="/logout">로그아웃</a><br><hr>
+    <a sec:authorize="isAnonymous()" class="nav-link" href="/auth/user/save">회원가입</a><br><hr>
+    <a sec:authorize="isAuthenticated()" class="nav-link" href="/user/delete">회원탈퇴</a><br><hr>
+    <br>
+    <button onclick="location.href='/user/chat'" id="chat-room">채팅방</button>
+    <br><br>
+    <button onclick="  " id = "new-chat">채팅새로시작</button>
+    <br><br>
+</div>
+
+</div>
+
+</body>
+</html>

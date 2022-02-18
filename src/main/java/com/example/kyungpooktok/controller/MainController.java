@@ -15,7 +15,7 @@ public class MainController {
     @GetMapping("/")
     public String index(Model model, Principal principal) {
         model.addAttribute("title",principal.getName());
-        return "main";
+        return "index";
     }
     @GetMapping("/user/chat")
     public String chat(){
