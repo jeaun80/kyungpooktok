@@ -11,6 +11,8 @@ $(function () {
         ChatManager.joinInterval = null;
 
         ChatManager.join = function () {
+
+            var data=
             console.log('Success to receive join result.');
 
             $.ajax({
@@ -33,6 +35,7 @@ $(function () {
 
                     clearInterval(ChatManager.joinInterval);
                     if (chatResponse.responseResult == 'SUCCESS') {
+
                         ChatManager.sessionId = chatResponse.sessionId;
                         ChatManager.chatRoomId = chatResponse.chatRoomId;
                         ChatManager.updateTemplate('chat');
@@ -63,7 +66,7 @@ $(function () {
 
         ChatManager.cancel = function () {
             $.ajax({
-                url     : 'cancel',
+                url     : '/cancel',
                 headers : {
                     "Content-Type": "application/json"
                 },
@@ -125,9 +128,10 @@ $(function () {
 
                 if (result.messageType == 'CHAT') {
                     if (result.senderSessionId === ChatManager.sessionId) {
-                        message += '[Me] : ';
+                        message += '나 : ';
+
                     } else {
-                        message += '[Anonymous] : ';
+                        message += '상대방 : ';
                     }
 
                     message += result.message + '\n';

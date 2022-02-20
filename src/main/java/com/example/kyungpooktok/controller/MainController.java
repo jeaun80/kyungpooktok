@@ -15,10 +15,11 @@ public class MainController {
     @GetMapping("/")
     public String index(Model model, Principal principal) {
         model.addAttribute("title",principal.getName());
-        return "index";
+        return "main";
     }
     @GetMapping("/user/chat")
-    public String chat(){
+    public String chat(Model model,Principal principal){
+        model.addAttribute("userid", principal.getName());
         return "layout/chat/randomchat";
     }
 }

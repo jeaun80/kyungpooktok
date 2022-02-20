@@ -1,6 +1,7 @@
 package com.example.kyungpooktok.controller.api;
 
 
+import com.example.kyungpooktok.config.auth.PrincipalDetail;
 import com.example.kyungpooktok.domain.chat.ChatMessage;
 import com.example.kyungpooktok.domain.chat.ChatRequest;
 import com.example.kyungpooktok.domain.chat.ChatResponse;
@@ -16,9 +17,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.async.DeferredResult;
 
 import javax.websocket.OnMessage;
@@ -26,6 +25,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 import java.net.Socket;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +60,8 @@ public class WebSocketChat extends Socket {
     @GetMapping("/cancel")
     @ResponseBody
     public ResponseEntity<Void> cancelRequest() {
+
+
         String sessionId = ServletUtil.getSession().getId();
         logger.info(">> Cancel request. session id : {}", sessionId);
 
