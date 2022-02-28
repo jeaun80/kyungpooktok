@@ -37,9 +37,13 @@ public class UserController {
 
     @GetMapping("/auth/user/update")
     public String update(){
-        return "layout/user/User-UpdatePassword";
+        return "layout/user/help/User-Password";
     }
 
+    @GetMapping("/auth/user/passwordfinal")
+    public String find(Model model,Principal principal){
+        model.addAttribute("id",principal.getName());
+        return "layout/user/help/User-PasswordFinal";}
 
 }
 

@@ -4,8 +4,17 @@ let index = {
     init: function() {
         $("#savebtn").on("click", () => { //this를 바인딩하기 위해 화샬표 함수 사용
             let form = document.querySelector("#signupvalue");
-            if(form.checkValidity()==false){
-                console.log("회원가입 안됨");
+            //let idval = document.querySelector("#username");
+            //if(idval.checkValidity()==false){
+            //alert("id는 4~20자리로 생성하세요");
+            //}
+            if(form.username.checkValidity()==false){
+                console.log("id안됨")
+                alert("id는 4~20자리로 생성하세요");
+            }
+            else if(form.password.checkValidity()==false){
+                console.log("비밀번호안됨");
+                alert("password는 8~20자리로 생성하세요");
             }
             else{
                 console.log("회원가입 됨");
@@ -43,7 +52,6 @@ let index = {
             let form = document.querySelector("#email1");
             if(form.checkValidity()==false){
                 console.log("안되는 이메일");
-                alert("dfjaksfd");
             }
             else{
                 console.log("메일발송");
@@ -74,11 +82,10 @@ let index = {
             }
         })
 
-        $("#idvaluebtn").on("click",() =>{
+        $("#idsvaluebtn").on("click",() =>{
             let form = document.querySelector("#idemailvalue");
             if(form.checkValidity()==false){
                 console.log("형식 또는 입력없음");
-
             }
             else{
                 this.idcheckemail();
@@ -227,6 +234,7 @@ let index = {
             success: function(result) {
                 $("#checkvalue").attr("disabled",null);
                 $("#checkemailbtn").attr("disabled",null);
+                $("#idcon").attr("disabled",null);
                 alert("이메일 인증에 성공했습니다!");
             },
             error: function(jqXHR, textStatus, errorThrown) {

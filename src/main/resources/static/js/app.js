@@ -169,24 +169,7 @@ $(function () {
 
         return ChatManager;
     }());
-/*
-    $("#btnJoin").on("click",() =>{
-        let type = document.querySelector("#btnJoin");
-        if(type.checkValidity()==false){
-            console.log("형식 또는 입력없음");
-            if (type == 'Join') {
-                ChatManager.join();
-            } else if (type == 'Cancel') {
-                ChatManager.cancel();
-            }
-            else{      console.log('Success to receive join result.');
-            }
-        }
-        else{
-            console.log("fail")
-        }
-    })
-*/
+
     $(document).on('click', '#btnJoin', function () {
         var type = $(this).text();
         if (type == 'Join') {

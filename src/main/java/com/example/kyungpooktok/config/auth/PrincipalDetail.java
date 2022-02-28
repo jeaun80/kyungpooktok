@@ -44,6 +44,7 @@ public class PrincipalDetail implements UserDetails {
     }
 
 
+
     public String getKakaotalkid(){
         return user.getKakaotalkid();
     }
